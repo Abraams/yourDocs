@@ -1,0 +1,58 @@
+button {
+	padding: 0;
+	background-color: transparent;
+}
+
+.btn {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 180px;
+	.fw-600;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	transition: 0.2s;
+	@media screen @m970 {
+		min-width: 220px;
+	}
+
+	&._sm {
+		min-height: 35px;
+		.fw-500;
+		.fz-16;
+		@media screen @m970 {
+			padding: 0 10px;
+			min-height: 45px;
+			.fz-18;
+		}
+	}
+
+	&._md {
+		min-width: 220px;
+		min-height: 40px;
+		padding: 0 45px;
+		.fw-500;
+		.fz-18;
+		@media screen @m970 {
+			min-height: 45px;
+			.fz-18;
+		}
+	}
+
+	&._blue {
+		color: #fff;
+		background-color: @blue;
+
+		&:hover {
+			background-color: darken(@blue, 6%);
+		}
+	}
+}
+
+a.btn {
+	display: inline-flex;
+}

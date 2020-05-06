@@ -1,0 +1,64 @@
+@import "_libs";
+@import "_vars";
+@import "_fonts";
+
+*,
+*::before,
+*::before {
+	outline: none;
+	scroll-behavior: smooth;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+footer,
+header,
+section {
+	position: relative;
+}
+
+section {
+	+section {
+		margin-top: 100px;
+	}
+}
+
+img,
+svg {
+	max-width: 100%;
+	pointer-events: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 1200px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 100%;
+	margin: 0 auto;
+	@media screen @m1200 {
+		max-width: 970px;
+	}
+	@media screen @m970 {
+		max-width: 768px;
+	}
+	@media screen @m768 {
+		max-width: 100%;
+	}
+}
+
+@import "_titles";
+@import "_classes";
+@import "_buttons";
+@import "_info-themplate";
+@import "_form";
+@import "_style";
