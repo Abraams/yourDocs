@@ -4,7 +4,10 @@
 	left: 0;
 	width: 100%;
 	z-index: 9;
-
+	@media screen @m970 {
+		position: fixed;
+		top: 0px;
+	}
 	ul {
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -46,7 +49,7 @@
 					}
 
 					&::after {
-						content: '';
+						content: "";
 						display: block;
 						width: 0;
 						height: 2px;
@@ -149,10 +152,11 @@
 			width: 75vw;
 			height: 100vh;
 			background-color: #fff;
-			box-shadow: -3px 0 16px 4px fade(@blue, 25%);
+			box-shadow: -3px 0 16px 4px fade(@blue, 0%);
 			position: absolute;
-			right: 0;
+			right: -120vw;
 			top: 0;
+			transition: all 0.8s ease-in-out;
 		}
 		@media screen @m375 {
 			width: 90vw;
@@ -188,7 +192,7 @@
 		padding: 10px 0;
 		background-color: #fff;
 		border-radius: 10em;
-		box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.08);
+		box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.15);
 		position: absolute;
 		right: 25px;
 		top: 15px;
@@ -224,20 +228,20 @@
 			}
 
 			&:nth-child(1) {
-				transform: translate(0, ~'calc(-50% - 10px)') rotate(0deg);
+				transform: translate(0, ~"calc(-50% - 10px)") rotate(0deg);
 				@media screen @m375 {
-					transform: translate(0, ~'calc(-50% - 8px)') rotate(0deg);
+					transform: translate(0, ~"calc(-50% - 8px)") rotate(0deg);
 				}
 			}
 
 			&:nth-child(2) {
-				transform: translate(0, ~'calc(-50%)') rotate(0deg);
+				transform: translate(0, ~"calc(-50%)") rotate(0deg);
 			}
 
 			&:nth-child(3) {
-				transform: translate(0, ~'calc(-50% + 10px)') rotate(0deg);
+				transform: translate(0, ~"calc(-50% + 10px)") rotate(0deg);
 				@media screen @m375 {
-					transform: translate(0, ~'calc(-50% + 8px)') rotate(0deg);
+					transform: translate(0, ~"calc(-50% + 8px)") rotate(0deg);
 				}
 			}
 		}
@@ -251,16 +255,16 @@
 				}
 
 				&:nth-child(1) {
-					transform: translate(0, ~'calc(-50%)') rotate(135deg);
+					transform: translate(0, ~"calc(-50%)") rotate(135deg);
 				}
 
 				&:nth-child(2) {
-					transform: translate(100%, ~'calc(-50%)') rotate(0deg);
+					transform: translate(100%, ~"calc(-50%)") rotate(0deg);
 					opacity: 0;
 				}
 
 				&:nth-child(3) {
-					transform: translate(0, ~'calc(-50%)') rotate(-135deg);
+					transform: translate(0, ~"calc(-50%)") rotate(-135deg);
 				}
 			}
 		}
@@ -286,6 +290,14 @@
 
 			&__btn-wrap {
 				display: block;
+			}
+		}
+	}
+	&._open {
+		.header {
+			&__nav {
+				box-shadow: -3px 0 16px 4px fade(@blue, 25%);
+				right: 0vw;
 			}
 		}
 	}

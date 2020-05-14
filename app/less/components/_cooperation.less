@@ -1,0 +1,31 @@
+.cooperation {
+	&__wrap {
+		justify-content: space-around;
+	}
+
+	&__item {
+		align-items: center;
+		justify-content: flex-start;
+		text-align: center;
+		flex: 0 0 30%;
+
+		.item {
+			&__icon {
+				min-height: 100px;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto;
+
+				> img {
+					object-fit: contain;
+				}
+			}
+
+			&__content {
+				> h3 {
+					margin-top: 35px;
+				}
+			}
+		}
+	}
+}
