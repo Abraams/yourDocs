@@ -13,11 +13,21 @@ p {
 h1 {
 	.fz-52;
 	.fw-800;
+	@media screen @m450 {
+		.fz-48;
+	}
 }
 
 h2 {
 	.fz-48;
 	.fw-800;
+	@media screen @m768 {
+		.fz-42;
+		text-align: center;
+	}
+	@media screen @m320 {
+		.fz-38;
+	}
 }
 
 h3 {
@@ -36,6 +46,10 @@ h3 {
 
 .fz-48 {
 	font-size: 2.6666666666666665rem;
+}
+
+.fz-42 {
+	font-size: 2.3333333333333335rem;
 }
 
 .fz-38 {

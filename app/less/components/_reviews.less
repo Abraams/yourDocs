@@ -12,7 +12,7 @@
 
 			.item {
 				&__img {
-					background: #ccc !important;
+					// background: #ccc !important;
 					background-size: contain;
 					background-position: center;
 					background-repeat: no-repeat;
@@ -30,14 +30,23 @@
 		margin-top: 25px;
 
 		li {
+			min-width: 15px;
+			max-width: 35px;
+			width: 5%;
+			@media screen @m500 {
+				width: 10%;
+			}
 			> button {
-				width: 35px;
+				width: 100%;
 				height: 6px;
 				border: none;
 				background-color: #ddd;
 				color: transparent;
 				transition: 0.15s ease-in-out;
 				cursor: pointer;
+				@media screen @m500 {
+					height: 7px;
+				}
 			}
 			&.slick-active {
 				> button {

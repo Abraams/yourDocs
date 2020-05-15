@@ -1,19 +1,40 @@
-.severities{
-	&__list{
-		>li{
+.severities {
+	&__list {
+		@media screen @m970 {
+			justify-content: space-between;
+		}
+		@media screen @m768 {
+			justify-content: space-around;
+		}
+		> li {
 			display: flex;
 			align-items: center;
-			flex: 0 0 50%;
+			flex: 0 0 48%;
 			.fz-24;
 			.fw-500;
 			margin-bottom: 45px;
+			@media screen @m768 {
+				flex: 0 0 55%;
+				min-width: 375px;
+			}
+			@media screen @m412 {
+				flex-direction: column;
+			}
+			@media screen @m375 {
+				min-width: 310px;
+				text-align: center;
+			}
 
-			i{
+			i {
 				margin-right: 24px;
+				@media screen @m412 {
+					margin-right: 0;
+					margin-bottom: 15px;
+				}
 
-				&._circle{
-					width: 48px;
-					height: 48px;
+				&._circle {
+					min-width: 48px;
+					min-height: 48px;
 					background-color: @blue-l;
 					border-radius: 10em;
 				}

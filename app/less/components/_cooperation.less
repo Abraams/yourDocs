@@ -1,6 +1,9 @@
 .cooperation {
 	&__wrap {
 		justify-content: space-around;
+		@media screen @m970 {
+			flex-wrap: wrap;
+		}
 	}
 
 	&__item {
@@ -8,6 +11,13 @@
 		justify-content: flex-start;
 		text-align: center;
 		flex: 0 0 30%;
+		@media screen @m970 {
+			flex: 0 0 55%;
+			min-width: 310px;
+			&:not(:last-child) {
+				margin-bottom: 50px;
+			}
+		}
 
 		.item {
 			&__icon {
@@ -24,6 +34,9 @@
 			&__content {
 				> h3 {
 					margin-top: 35px;
+					@media screen @m970 {
+						margin-top: 20px;
+					}
 				}
 			}
 		}

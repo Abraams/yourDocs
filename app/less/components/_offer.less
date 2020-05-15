@@ -1,15 +1,22 @@
 .offer {
 	padding-top: 50px;
-	background-position: 0 55%;
+	background-position: 50% 55%;
 	background-repeat: no-repeat;
 	background-size: cover;
-
-	&::before{
-		content: '';
+	@media screen @m970 {
+		padding-top: 25px;
+	}
+	&::before {
+		content: "";
 		display: block;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 101.34%, rgba(255, 255, 255, 0) 101.35%);
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.85) 0%,
+			rgba(255, 255, 255, 0.85) 101.34%,
+			rgba(255, 255, 255, 0) 101.35%
+		);
 		box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
 		position: absolute;
 		top: 0;
@@ -19,17 +26,43 @@
 		padding-top: 140px;
 		padding-bottom: 50px;
 		position: relative;
+		@media screen @m970 {
+			padding-top: 100px;
+		}
+		@media screen @m412 {
+			padding-top: 65px;
+		}
 	}
 
 	&__logo {
 		position: absolute;
 		left: 15px;
 		top: 0;
+		@media screen @m1200 {
+			top: 50px;
+		}
+		@media screen @m970 {
+			top: 0;
+		}
 	}
 
 	&__heading {
+		@media screen @m600 {
+			text-align: center;
+			word-wrap: break-word;
+		}
+
 		> h1 {
 			text-transform: uppercase;
+			@media screen @m375 {
+				text-transform: none;
+			}
+			.break-word--550 {
+				display: none;
+				@media screen @m550 {
+					display: inline-block;
+				}
+			}
 		}
 	}
 
@@ -38,21 +71,39 @@
 		display: -ms-flex;
 		display: flex;
 		flex-wrap: wrap;
-		margin-top: 75px;
+		@media screen @m600 {
+			justify-content: center;
+		}
 
 		> li {
 			display: inline-flex;
 			align-items: center;
 			flex: 0 0 29%;
-			margin-bottom: 20px;
+			margin-bottom: 25px;
+			@media screen @m970 {
+				flex: 0 0 43%;
+				min-width: 280px;
+			}
+			@media screen @m600 {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
 
 			> i {
 				margin-right: 15px;
+				@media screen @m600 {
+					margin-right: 0;
+					margin-bottom: 5px;
+				}
 			}
 		}
 	}
 
 	&__btn-wrap {
 		margin-top: 40px;
+		@media screen @m600 {
+			text-align: center;
+		}
 	}
 }
