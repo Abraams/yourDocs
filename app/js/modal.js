@@ -31,6 +31,7 @@ function initModal() {
 				}
 
 				item.classList.remove("_hidden");
+				item.classList.add("_open");
 				// Удаляем класс _hidden у нужного модального окна
 			}
 		});
@@ -93,15 +94,13 @@ function initModal() {
 		});
 	}
 
-	document.addEventListener("DOMContentLoaded", () => {
-		closeModalElems.forEach((item) => {
-			item.addEventListener("click", closeModal);
-			// Вешаем событие на клик по открывающим кнопкам
-		});
+	closeModalElems.forEach((item) => {
+		item.addEventListener("click", closeModal);
+		// Вешаем событие на клик по открывающим кнопкам
+	});
 
-		openModalElems.forEach((item) => {
-			item.addEventListener("click", openModal);
-			// Вешаем событие на клик по открывающим кнопкам
-		});
+	openModalElems.forEach((item) => {
+		item.addEventListener("click", openModal);
+		// Вешаем событие на клик по открывающим кнопкам
 	});
 }

@@ -1,74 +1,105 @@
-function initMenu() {
-	const HTML = document.querySelector("html");
-	const BODY = document.querySelector("body");
+class HeaderBar {
+	constructor(
+		elem = document.querySelector(`#Header`),
+		fixed = false,
+		mobile = false,
+		open = false
+	) {
+		this.elem = elem;
+		this.toggler = elem.querySelector(`#HeaderToggler`);
+		this.fixed = fixed;
+		this.mobile = mobile;
+		this.open = open;
+	}
 
-	// --- БЛОК ГЛАВНОГО МЕНЮ ---
-	const header = document.querySelector(".header");
-	const menuToggler = document.querySelector(".header__toggler");
-	const menu = document.querySelector(".header__nav");
-	const exitMenuElems = document.querySelectorAll("[data-menu-exit]");
-	const exitMenuAnchor = document.querySelectorAll('[href^="#"]');
+	fix() {
+		if (!this.mobile) {
+			if (this.fixed) return false;
 
-	// -- Липкое меню --
-	let winScroll = 0;
+			this.elem.classList.add(`_fixed`);
+			this.fixed = true;
+			return true;
+		}
+	}
+	unfix() {
+		if (!this.mobile) {
+			if (!this.fixed) return false;
 
-	// Функция отображения мобильного меню
-	const fixMenu = function () {
-		header.classList.add("_fixed");
-	};
+			this.elem.classList.remove(`_fixed`);
+			this.fixed = false;
+		}
+	}
+	openMenu() {
+		this.toggler.classList.add(`_active`);
 
-	const mobMenu = function () {
-		header.classList.add("_mobile");
-	};
-	// Функция скрытия мобильного меню
-	const unFixMenu = function () {
-		header.classList.remove("_fixed");
-		closeMenu();
-	};
-	// Условие отображения мобильного меню
-	if (window.screen.width >= 1023) {
+		this.elem.classList.add(`_open`);
+		this.open = true;
+		return true;
+	}
+	closeMenu() {
+		this.toggler.classList.remove(`_active`);
+
+		this.elem.classList.remove(`_open`);
+		this.open = false;
+		return true;
+	}
+	toggleMenu() {
+		if (this.mobile) {
+			if (this.open) this.closeMenu();
+			else this.openMenu();
+		}
+		return false;
+	}
+
+	enableMobileMod() {
+		this.elem.addEventListener(`click`, (event) => {
+			const target = event.target;
+
+			if (
+				target.id === "HeaderToggler" ||
+				target.tagName.toLowerCase() === "span"
+			) {
+				this.toggleMenu();
+			}
+			if (
+				target.tagName.toLowerCase() === "a" ||
+				target.tagName.toLowerCase() === "button"
+			) {
+				this.closeMenu();
+			}
+		});
+
+		return false;
+	}
+
+	enableDesctopMod() {
+		let winScroll;
+
 		window.addEventListener("scroll", () => {
-			winScroll = HTML.scrollTop;
-			if (winScroll >= 500 && !header.classList.contains("_fixed")) {
-				fixMenu();
-			} else if (winScroll <= 300 && header.classList.contains("_fixed")) {
-				unFixMenu();
+			winScroll = document.querySelector("html").scrollTop;
+
+			if (winScroll >= 500 && !this.fixed) {
+				this.fix();
+			} else if (winScroll <= 300 && this.fixed) {
+				this.unfix();
 			}
 		});
 	}
 
-	// Функция открытия меню
-	const closeMenu = function () {
-		header.classList.remove("_open");
-		menuToggler.classList.remove("_active");
-	};
-	// Функция закрытия меню
-	const openMenu = function () {
-		header.classList.add("_open");
-		menuToggler.classList.add("_active");
-	};
-
-	const toggleMenu = function () {
-		if (!header.classList.contains("_open")) {
-			openMenu();
+	toggleMenuMod() {
+		if (window.screen.width <= 971) {
+			this.unfix();
+			this.mobile = true;
+			this.enableMobileMod();
 		} else {
-			closeMenu();
+			this.closeMenu();
+			this.mobile = false;
+			this.enableDesctopMod();
 		}
-	};
+	}
+}
 
-	// Функция присваивания события по клику на закрывающие/открывающие меню элементы
-	exitMenuElems.forEach((elem) => {
-		elem.addEventListener("click", toggleMenu);
-	});
-	// Функция присваивания события по клику на закрывающие меню ссылки
-	// exitMenuLinks.forEach(elem => {
-	//   elem.addEventListener('click', closeMenu);
-	// });
-	exitMenuAnchor.forEach((elem) => {
-		elem.addEventListener("click", closeMenu);
-	});
-
-	// ---  ---
-
-	menuToggler.addEventListener("click", toggleMenu);
+function initMenu() {
+	const mainHeader = new HeaderBar();
+	mainHeader.toggleMenuMod();
 }
