@@ -2,6 +2,7 @@ let gulp = require("gulp"),
 	less = require("gulp-less"),
 	path = require("path"),
 	csso = require("gulp-csso"),
+	gcmq = require("gulp-group-css-media-queries"),
 	browserSync = require("browser-sync"),
 	watch = require("gulp-watch"),
 	babel = require("gulp-babel"),
@@ -25,6 +26,7 @@ gulp.task("less", function () {
 				paths: [path.join(__dirname, "less", "includes")],
 			})
 		)
+		.pipe(gcmq())
 		.pipe(
 			rename({
 				basename: "all",
@@ -64,7 +66,12 @@ gulp.task("html", function () {
 
 gulp.task("scripts", function () {
 	return gulp
-		.src(["app/js/*.js", "!app/js/all.min.js"])
+		.src([
+			"app/js/*.js",
+			"!app/js/all.min.js",
+			"!app/js/main.js",
+			"app/js/main.js",
+		])
 		.pipe(concat("all.min.js"))
 		.pipe(gulp.dest("app/js"))
 		.pipe(
@@ -111,7 +118,6 @@ gulp.task("export", async function () {
 	let buildJs = gulp
 		.src("app/js/all.min.js")
 		.pipe(babel())
-		.pipe(concat("all.min.js"))
 		.pipe(
 			uglify({
 				toplevel: true,
